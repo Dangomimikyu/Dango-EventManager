@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DangoMimikyu.Events
+namespace DangoMimikyu.EventManagement
 {
     public interface IEventArgData
     {

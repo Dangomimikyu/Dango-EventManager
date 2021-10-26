@@ -3,18 +3,41 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class EventManager : MonoBehaviour
+namespace DangoMimikyu.EventManagement
 {
-    public static event Action<int> testAction;
-    // Start is called before the first frame update
-    void Start()
+    public class EventManager : MonoBehaviour
     {
-        //testAction.method
-    }
+        public static EventManager instance { private set; get; }
 
-    // Update is called once per frame
-    void Update()
-    {
+        private Dictionary<EventTypes, Action<IEventArgData>> m_EventnameToEvent = new Dictionary<EventTypes, Action<IEventArgData>>(); // dictionary of <eventName, ActualEventAction>
 
+        public static event Action<int> testAction;
+        #region Monobehaviour functions
+        void Awake()
+        {
+            if (!instance)
+            {
+                instance = this;
+            }
+            else
+            {
+                Debug.LogWarning("Existing EventManager already exist but you're trying to make a new one. will destroy the old one");
+                Destroy(instance);
+                instance = this;
+            }
+        }
+
+        void Update()
+        {
+
+        }
+        #endregion
+
+        #region Subscription functions
+        public void StartListening(EventTypes eventType, object sub)
+        {
+
+        }
+        #endregion
     }
 }
