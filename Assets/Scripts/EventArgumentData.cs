@@ -1,24 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+// define the event arguments datatype so that any type can be used
 namespace DangoMimikyu.EventManagement
 {
     public interface IEventArgData
     {
-        string eventName { get; } // name of the event to listen to, this variable is set as a read-only accessor
+        public GameEvents eventName { get; } // name of the event to listen to, this variable is set as a read-only accessor
+
+        public object[] eventParams { get; }
     }
 
-
-    public class EventArgumentData<T> : IEventArgData
+    public class EventArgumentData : IEventArgData
     {
-        public string eventName { private set; get; }
-        public T otherArguments;
+        public GameEvents eventName { private set; get; }
+        public object[] eventParams { private set; get; }
 
-        public EventArgumentData(string EventToSub, T otherArgs)
+        public EventArgumentData(GameEvents EventToSub, params object[] otherArgs)
         {
             eventName = EventToSub;
-            otherArguments = otherArgs;
+            eventParams = otherArgs;
         }
     }
 }
